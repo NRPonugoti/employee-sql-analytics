@@ -1,0 +1,33 @@
+** Recursive CTE 
+WITH Cte_Name AS 
+(
+SELECT ...
+FROM ...
+WHERE ...     [Anchor query - execute only once ]
+
+UNION ALL 
+
+SELECT ...
+FROM Cte_Name
+WHERE ...[Break Condition] [ recursive query  -SQL going throguh recursive query and keep looping until meet the condition is met]
+)
+SELECT ...
+FROM Cte_Name
+WHERE ...
+[MAIN Query]
+
+-- Generating a sequence of numbers from 1 to 20 
+WITH Series AS (
+SELECT 1 AS Mynumber 
+UNION ALL 
+--Recursive Query 
+SELECT
+Mynumber+1
+FROM Series 
+WHERE Mynumber<20
+)
+SELECT * FROM Series
+OPTION(MAXRECURSION 10);
+
+Execution flow 
+
